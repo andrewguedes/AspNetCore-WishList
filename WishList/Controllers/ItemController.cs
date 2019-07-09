@@ -24,13 +24,18 @@ namespace WishList.Controllers
             return View("Index", model);
         }
 
+        public IActionResult Create()
+        {
+            return View("Create");
+        }
+
         [HttpPost]
         public IActionResult Create(Item item)
         {
             _context.Items.Add(item);
             _context.SaveChanges();
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
@@ -38,7 +43,7 @@ namespace WishList.Controllers
             _context.Items.Remove(_context.Items.Find(id));
             _context.SaveChanges();
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
